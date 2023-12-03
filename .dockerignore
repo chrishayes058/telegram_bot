@@ -1,0 +1,6 @@
+# .dockerignore
+venv
+.env
+anon.session
+anon.session-journal
+session.session

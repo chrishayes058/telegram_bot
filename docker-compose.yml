@@ -1,0 +1,8 @@
+services:
+  telegram_bot:
+    image: bots/telegram_bot
+    volumes:
+      - ./session.session:/usr/src/app/session.session
+    env_file:
+      - .env
+    
