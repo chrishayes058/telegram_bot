@@ -10,4 +10,4 @@ COPY . .
 
 RUN chmod +x /usr/src/app
 
-ENTRYPOINT [ "python3", "-u", "./main.py" ]
+ENTRYPOINT [ "python3", "-u", "./src/main.py" ]
