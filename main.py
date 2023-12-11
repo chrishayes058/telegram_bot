@@ -1,14 +1,21 @@
 from os import environ
+import requests
 
 from telethon import TelegramClient, events
 
+BASE_URL = "http://alpaca_trading_app"
+BASE_PORT = 8000
 API_ID = environ.get("API_ID")
 API_HASH = environ.get("API_HASH")
 
 client = TelegramClient('session', API_ID, API_HASH)
 
 async def buy_event(stock, value):
-    print(f"Buy event: Stock {stock}, value {value}")
+    url = f"{BASE_URL}:{BASE_PORT}/buy"
+    data = {'name': 'SPY', 'quantity': 1.0}
+
+    result = requests.post(url, json=data)
+    print(f"Sent BUY request with result: {result}")
 
 async def sell_event(stock, value):
     print(f"Sell event: Stock {stock}, value {value}")
