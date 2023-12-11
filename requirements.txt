@@ -1,2 +1,5 @@
 telethon
 requests
+flake8
+black
+pre-commit
