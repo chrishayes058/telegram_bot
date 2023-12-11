@@ -11,24 +11,24 @@ API_HASH = environ.get("API_HASH")
 client = TelegramClient("session", API_ID, API_HASH)
 
 
-async def buy_event(stock, value):
+async def buy_event(stock, quantity):
     url = f"{BASE_URL}:{BASE_PORT}/buy"
-    data = {"name": "SPY", "quantity": 1.0}
+    data = {"name": stock, "quantity": quantity}
 
     result = requests.post(url, json=data)
     print(f"Sent BUY request with result: {result}")
 
 
-async def sell_event(stock, value):
-    print(f"Sell event: Stock {stock}, value {value}")
+async def sell_event(stock, quantity):
+    print(f"Sell event: Stock {stock}, quantity {quantity}")
 
 
 @client.on(events.NewMessage(chats="@BotFather"))
 async def my_event_handler(event):
     if "buy" in event.text.lower():
-        await buy_event("GOLD", 5)
+        await buy_event("SPY", 5.0)
     if "sell" in event.text.lower():
-        await sell_event("GOLD", 5)
+        await sell_event("SPY", 5.0)
 
 
 client.start()
